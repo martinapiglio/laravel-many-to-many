@@ -51,6 +51,20 @@ function routeName($string){
                 Add new project
             </a>
         </li>
+
+        <li class="nav-item">
+            <a href="{{ route('admin.technologies.index') }}" class=" {{routeName('admin.technologies.create') ? '_active' : ''}}">
+                <i class="fa-solid fa-microchip me-2"></i>
+                Technologies
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ route('admin.technologies.create') }}" class=" {{routeName('admin.technologies.create') ? '_active' : ''}}">
+                <i class="fa-solid fa-plus me-2"></i>
+                Add a new technology
+            </a>
+        </li>
       
     </ul>
 
