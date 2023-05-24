@@ -53,7 +53,7 @@ function routeName($string){
         </li>
 
         <li class="nav-item">
-            <a href="{{ route('admin.technologies.index') }}" class=" {{routeName('admin.technologies.create') ? '_active' : ''}}">
+            <a href="{{ route('admin.technologies.index') }}" class=" {{routeName('admin.technologies.index') ? '_active' : ''}}">
                 <i class="fa-solid fa-microchip me-2"></i>
                 Technologies
             </a>

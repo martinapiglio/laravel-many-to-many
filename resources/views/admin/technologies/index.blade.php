@@ -29,6 +29,10 @@
 
         </table>
 
+        <button class="btn btn-dark">
+            <a href="{{route('admin.technologies.create')}}">Add a new technology</a>
+        </button>
+
     </div>
 
 @endsection

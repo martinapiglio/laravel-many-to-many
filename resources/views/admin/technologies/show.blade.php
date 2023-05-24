@@ -43,6 +43,11 @@
 
         @endif
 
+        <div class="mb-2">
+            <a id="back-link" href="{{route('admin.technologies.index')}}">Back to all technologies preview</a>
+        </div>
+        
     </div>
+
 
 @endsection

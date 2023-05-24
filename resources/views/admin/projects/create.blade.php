@@ -73,7 +73,7 @@
                 <label for="thumbnail">Thumbnail</label>
                 <input class="mx-3 form-control @error('thumb') is-invalid @enderror" type="text" id="thumbnail" name="thumbnail" value="{{old('thumbnail')}}" required>
                                 
-                @error('thumb')
+                @error('thumbnail')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

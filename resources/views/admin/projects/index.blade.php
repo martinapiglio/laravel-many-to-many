@@ -49,6 +49,10 @@
 
         </table>
 
+        <button class="btn btn-dark">
+            <a href="{{route('admin.projects.create')}}">Add a new project</a>
+        </button>
+
     </div>
 
 @endsection
