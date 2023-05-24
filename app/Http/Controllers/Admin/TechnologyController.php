@@ -40,14 +40,14 @@ class TechnologyController extends Controller
     {
         $formData = $request->all();
 
-        $newTech = new Technology();
-        $newTech->name = $formData['name'];
-        $newTech->slug = Str::slug($formData['name'], '-');
-        $newTech->color = $formData['color'];
+        $newTechnology = new Technology();
+        $newTechnology->name = $formData['name'];
+        $newTechnology->slug = Str::slug($formData['name'], '-');
+        $newTechnology->color = $formData['color'];
 
-        $newTech->save();
+        $newTechnology->save();
 
-        return redirect()->route('admin.technologies.show', $newTech);
+        return redirect()->route('admin.technologies.show', $newTechnology);
     }
 
     /**
@@ -69,7 +69,7 @@ class TechnologyController extends Controller
      */
     public function edit(Technology $technology)
     {
-        //
+        return view('admin.technologies.edit', compact('technology'));
     }
 
     /**
@@ -81,7 +81,14 @@ class TechnologyController extends Controller
      */
     public function update(Request $request, Technology $technology)
     {
-        //
+        $formData = $request->all();
+
+        $formData['slug'] = Str::slug($formData['name'], '-');
+        $technology->update($formData);
+
+        $technology->save();
+
+        return redirect()->route('admin.technologies.show', $technology);
     }
 
     /**

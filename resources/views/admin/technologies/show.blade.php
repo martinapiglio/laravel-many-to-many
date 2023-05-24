@@ -43,10 +43,14 @@
 
         @endif
 
+        <button id="change-btn" class="btn text-white">
+            <a href="{{route('admin.technologies.edit', $technology->slug)}}">Change</a>
+        </button>
+
         <div class="mb-2">
             <a id="back-link" href="{{route('admin.technologies.index')}}">Back to all technologies preview</a>
         </div>
-        
+
     </div>
 
 
