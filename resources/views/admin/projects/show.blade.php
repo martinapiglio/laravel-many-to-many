@@ -8,7 +8,7 @@
         {{$project->title}}
     </h3>
 
-    <hr class="mb-5">
+    <hr class="mb-2">
 
     <p>
         <strong>Description</strong>: {{$project->description}}
@@ -19,9 +19,22 @@
         {{-- you can also use -->     {{$project->type?->title}}     that shows the title when exist, otherwise blank --}}
     </div>
 
-    <img class="img-thumbnail mb-2" src="{{$project->thumbnail}}" alt="">
-    <div class="mb-2"><strong>Languages</strong>: {{$project->languages}}</div>
-    <div class="mb-2"><strong>Github repository name</strong>: {{$project->github_repo}}</div>
+    {{-- technologies --}}
+
+    <div class="d-flex mb-3">
+
+        <strong class="me-2">Technologies: </strong>
+
+        @foreach($project->technologies as $technology)
+          <span class="badge rounded-pill mx-1" style="background-color: {{$technology->color}}">{{$technology->name}}</span>
+        @endforeach
+
+    </div>
+    {{-- // technologies --}}
+
+    <img class="img-thumbnail mb-3" src="{{$project->thumbnail}}" alt="">
+    <div class="mb-3"><strong>Languages</strong>: {{$project->languages}}</div>
+    <div class="mb-3"><strong>Github repository name</strong>: {{$project->github_repo}}</div>
     <div class="mb-3"><strong>Year</strong>: {{$project->year}}</div>
 
     <button id="change-btn" class="btn text-white">

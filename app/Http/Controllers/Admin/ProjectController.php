@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -30,8 +31,9 @@ class ProjectController extends Controller
     public function create()
     {
         $types = Type::all();
+        $technologies = Technology::all();
 
-        return view('admin.projects.create', compact('types'));
+        return view('admin.projects.create', compact('types', 'technologies'));
     }
 
     /**
@@ -53,6 +55,10 @@ class ProjectController extends Controller
         $newProject->fill($formData);
 
         $newProject->save(); 
+
+        if(array_key_exists('technologiesArray', $formData)){
+            $newProject->technologies()->attach($formData['technologiesArray']);
+        }
 
         return redirect()->route('admin.projects.show', $newProject->slug);
     }
