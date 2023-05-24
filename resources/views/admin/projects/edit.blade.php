@@ -57,6 +57,19 @@
             </div>
             {{-- // type select --}}
 
+            {{-- technologies --}}
+            <div class="mb-3">
+                Technologies:
+                
+                @foreach($technologies as $technology)
+                    <div class="form-check">
+                        <input type="checkbox" id="technology-{{$technology->id}}" name="technologiesArray[]" value="{{$technology->id}}" @checked($project->technologies->contains($technology))>
+                        <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
+                    </div>
+                @endforeach
+            </div>
+            {{-- // technologies --}}
+
             <div class="input-group mb-3">
                 <label for="thumbnail">Thumbnail</label>
                 <input class="mx-3 form-control @error('thumb') is-invalid @enderror" type="text" id="thumbnail" name="thumbnail" value="{{old('thumbnail') ?? $project->thumbnail}}" required>
