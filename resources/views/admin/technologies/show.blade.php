@@ -6,7 +6,7 @@
     <div class="container p-5">
         
         <h3 class="display-5 fw-bold mb-5">
-            Technology: {{$technology->name}}
+            Technology: <span style="color: {{$technology->color}}">{{$technology->name}}</span> 
         </h3>
 
         @if(count($technology->projects) > 0)

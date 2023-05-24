@@ -21,7 +21,7 @@
                 @foreach($technologies as $technology)
                     <tr>
                         <td>{{$technology->name}}</td>
-                        <td>{{$technology->color}}</td>
+                        <td style="color: {{$technology->color}}"> <strong>{{$technology->color}}</strong> </td>
                         <td><a href="{{route('admin.technologies.show', $technology->slug)}}">click here</a></td>
                     </tr>
                 @endforeach          
