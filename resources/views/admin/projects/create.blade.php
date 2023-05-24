@@ -57,7 +57,7 @@
             {{-- // type select --}}
 
             {{-- technologies --}}
-            <div class="mb-3">
+            <div class="input-group mb-3">
                 Technologies:
                 
                 @foreach($technologies as $technology)
@@ -80,7 +80,7 @@
                 @enderror
             </div>
 
-            <div class="input-group mb-3">
+            {{-- <div class="input-group mb-3">
                 <label for="languages">Languages</label>
                 <input class="mx-3 form-control @error('languages') is-invalid @enderror" type="text" id="languages" name="languages" value="{{old('languages')}}" required>
                             
@@ -89,7 +89,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-            </div>
+            </div> --}}
 
             <div class="input-group mb-3">
                 <label for="year">Year</label>

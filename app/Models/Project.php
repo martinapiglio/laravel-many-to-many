@@ -9,7 +9,7 @@ class Project extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['title', 'description', 'type_id', 'slug', 'thumbnail', 'languages', 'year', 'github_repo'];
+    protected $fillable = ['title', 'description', 'type_id', 'slug', 'thumbnail', 'year', 'github_repo'];
     
     protected $attributes = [
         'year' => 2023

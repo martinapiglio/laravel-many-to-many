@@ -135,7 +135,7 @@ class ProjectController extends Controller
             'description' => 'required|max:255',
             'type_id' => 'nullable|exists:types,id',
             'thumbnail' => 'required',
-            'languages' => 'required',
+            // 'languages' => 'required',
             'year' => 'nullable|min:4|max:4|gte:2015|lte:2023',
             'github_repo' => 'required',
         ], [
@@ -146,7 +146,7 @@ class ProjectController extends Controller
             'description.max' => 'Description field cannot be longer than 255 characters.',
             'type_id.exists' => 'Please select a type chosen among the existing ones',
             'thumb.required' => "Thumbnail path is mandatory.",
-            'languages.required' => "Languages field is mandatory.",
+            // 'languages.required' => "Languages field is mandatory.",
             'year.min' => "Year must be 4 digits long",
             'year.max' => "Year must be 4 digits long",
             'year.gte' => "Year must be greater than or equal to 2015",

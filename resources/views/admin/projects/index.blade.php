@@ -13,7 +13,7 @@
 
             <thead class="text-white">
                 <th>Title</th>
-                <th>Languages</th>
+                <th>Technologies</th>
                 <th>Type</th>
                 <th>Year</th>
                 <th>Repository name</th>
@@ -25,7 +25,19 @@
               @foreach($projects as $project)
                 <tr>
                     <td>{{$project->title}}</td>
-                    <td>{{$project->languages}}</td>
+                    <td>
+                        @php
+
+                            $technologiesNames = [];
+
+                            foreach($project->technologies as $technology){
+                                $technologiesNames[] = $technology->name;
+                            }
+                            
+                            echo implode(', ', $technologiesNames);
+
+                        @endphp
+                    </td>
                     <td>{{$project->type?->title}}</td>
                     <td>{{$project->year}}</td>
                     <td>{{$project->github_repo}}</td>
