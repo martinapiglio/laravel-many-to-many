@@ -20,25 +20,32 @@
     </div>
 
     {{-- technologies --}}
-
     <div class="d-flex mb-3">
 
         <strong class="me-2">Technologies: </strong>
 
-        @foreach($project->technologies as $technology)
-          <span class="badge rounded-pill mx-1" style="background-color: {{$technology->color}}">{{$technology->name}}</span>
-        @endforeach
+        @if(count($project->technologies) > 0)
 
+            @foreach($project->technologies as $technology)
+            <span class="badge rounded-pill mx-1" style="background-color: {{$technology->color}}">{{$technology->name}}</span>
+            @endforeach
+
+        @else  
+
+            Unknown
+
+        @endif
+        
     </div>
     {{-- // technologies --}}
 
+
     <img class="img-thumbnail mb-3" src="{{ asset('storage/' . $project->thumbnail) }}" alt="">
 
-    <div class="mb-3"><strong>Languages</strong>: {{$project->languages}}</div>
     <div class="mb-3"><strong>Github repository name</strong>: {{$project->github_repo}}</div>
     <div class="mb-3"><strong>Year</strong>: {{$project->year}}</div>
 
-    <button id="change-btn" class="btn text-white">
+    <button id="change-btn" class="btn btn-dark">
         <a href="{{route('admin.projects.edit', $project->slug)}}">Change</a>
     </button>
 

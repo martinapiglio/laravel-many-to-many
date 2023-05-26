@@ -9,7 +9,7 @@
             All technologies
         </h3>
 
-        <table class="table table-striped">
+        <table id="technologies-table" class="table table-striped">
 
             <thead class="text-white bg-secondary">
                 <th>Name</th>

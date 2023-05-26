@@ -23,7 +23,7 @@
                 <input class="mx-3 form-control" type="color" id="color" name="color" value="{{old('color') ?? $technology->color}}" required>
             </div>
   
-            <button class="btn text-white buttons" type="submit">Change</button>
+            <button class="btn btn-dark" type="submit">Change</button>
         </form>
 
         <div class="mb-2">

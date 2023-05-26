@@ -117,7 +117,7 @@
                 @enderror
             </div>
 
-            <button class="btn text-white buttons" type="submit">Change</button>
+            <button class="btn btn-dark" type="submit">Change</button>
   
         </form>
 

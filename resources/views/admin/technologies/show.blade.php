@@ -11,7 +11,7 @@
 
         @if(count($technology->projects) > 0)
 
-        <table class="table table-striped">
+        <table id="technologies-projects-table" class="table table-striped">
 
             <thead class="text-white bg-secondary">
                 <th>Title</th>
@@ -39,11 +39,11 @@
 
         @else  
 
-        No projects
+       <div  class="mb-4">No projects</div> 
 
         @endif
 
-        <button id="change-btn" class="btn text-white">
+        <button class="btn btn-dark">
             <a href="{{route('admin.technologies.edit', $technology->slug)}}">Change</a>
         </button>
 
@@ -81,7 +81,7 @@
         </div> 
         {{-- // modal --}}
 
-        <div class="mb-2">
+        <div class="my-3">
             <a id="back-link" href="{{route('admin.technologies.index')}}">Back to all technologies preview</a>
         </div>
 
