@@ -65,8 +65,8 @@ class ProjectController extends Controller
 
         $newProject->save(); 
 
-        if(array_key_exists('technologiesArray', $formData)){
-            $newProject->technologies()->attach($formData['technologiesArray']);
+        if(array_key_exists('technologies', $formData)){
+            $newProject->technologies()->attach($formData['technologies']);
         }
 
         return redirect()->route('admin.projects.show', $newProject->slug);
@@ -125,8 +125,8 @@ class ProjectController extends Controller
 
         $project->update($formData);
 
-        if(array_key_exists('technologiesArray', $formData)){
-            $project->technologies()->sync($formData['technologiesArray']);
+        if(array_key_exists('technologies', $formData)){
+            $project->technologies()->sync($formData['technologies']);
         } else {
             $project->technologies()->detach();
         }

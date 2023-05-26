@@ -75,23 +75,19 @@
                 
                 @foreach($technologies as $technology)
                     <div class="form-check">
-                        <input type="checkbox" id="technology-{{$technology->id}}" name="technologiesArray[]" value="{{$technology->id}}">
+                        <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}" @checked(in_array($technology->id, old('technologies', [])))>
                         <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
                     </div>
                 @endforeach
-            </div>
-            {{-- // technologies --}}
-
-            {{-- <div class="input-group mb-3">
-                <label for="languages">Languages</label>
-                <input class="mx-3 form-control @error('languages') is-invalid @enderror" type="text" id="languages" name="languages" value="{{old('languages')}}" required>
-                            
-                @error('languages')
-                    <div class="invalid-feedback">
+                
+                @error('technologies')
+                    <div class="text-danger">
                         {{ $message }}
                     </div>
                 @enderror
-            </div> --}}
+
+            </div>
+            {{-- // technologies --}}
 
             <div class="input-group mb-3">
                 <label for="year">Year</label>

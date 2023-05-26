@@ -71,29 +71,32 @@
             {{-- // type select --}}
 
             {{-- technologies --}}
-            
             <div class="input-group mb-3">
                 Technologies:
                 
-                @foreach($technologies as $technology)
-                    <div class="form-check">
-                        <input type="checkbox" id="technology-{{$technology->id}}" name="technologiesArray[]" value="{{$technology->id}}" @checked($project->technologies->contains($technology))>
-                        <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
-                    </div>
-                @endforeach
-            </div>
-            {{-- // technologies --}}
+                <div class="form-check">
 
-            {{-- <div class="input-group mb-3">
-                <label for="languages">Languages</label>
-                <input class="mx-3 form-control @error('languages') is-invalid @enderror" type="text" id="languages" name="languages" value="{{old('languages') ?? $project->languages}}" required>
-                            
-                @error('languages')
-                    <div class="invalid-feedback">
-                        {{ $message }}
+                    @foreach($technologies as $technology)
+                    
+                        @if($errors->any())
+                            <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}" @checked(in_array($technology->id, old('technologies', [])))>
+                        @else
+                            <input type="checkbox" id="technology-{{$technology->id}}" name="technologies[]" value="{{$technology->id}}" @checked($project->technologies->contains($technology->id))>
+                        @endif
+
+                            <label for="technology-{{$technology->id}}">{{$technology->name}}</label>
+
+                    @endforeach
+
+                </div>
+                    
+                @error('technologies') 
+                    <div class="text-danger">
+                        {{$message}}
                     </div>
                 @enderror
-            </div> --}}
+            </div>            
+            {{-- // technologies --}}
 
             <div class="input-group mb-3">
                 <label for="year">Year</label>
