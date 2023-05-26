@@ -9,7 +9,7 @@
             Change the selected project
         </h3>
         
-        <form action=" {{ route('admin.projects.update',  $project->slug) }} " method="POST">
+        <form action=" {{ route('admin.projects.update',  $project->slug) }} " method="POST" enctype="multipart/form-data">
             @csrf 
             @method('PUT')
   
@@ -34,6 +34,19 @@
                     </div>
                 @enderror
             </div>
+
+            {{-- thumbnail --}}
+            <div class="input-group mb-3">
+                <label for="thumbnail">Thumbnail</label>
+                <input class="mx-3 form-control @error('thumb') is-invalid @enderror" type="file" id="thumbnail" name="thumbnail">
+                                
+                @error('thumb')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            {{-- // thumbnail --}}
 
             {{-- type select --}}
             <div class="input-group mb-3">
@@ -70,17 +83,6 @@
                 @endforeach
             </div>
             {{-- // technologies --}}
-
-            <div class="input-group mb-3">
-                <label for="thumbnail">Thumbnail</label>
-                <input class="mx-3 form-control @error('thumb') is-invalid @enderror" type="text" id="thumbnail" name="thumbnail" value="{{old('thumbnail') ?? $project->thumbnail}}" required>
-                                
-                @error('thumb')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
 
             {{-- <div class="input-group mb-3">
                 <label for="languages">Languages</label>

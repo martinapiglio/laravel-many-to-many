@@ -9,7 +9,7 @@
             Add a new project
         </h3>
         
-        <form action=" {{ route('admin.projects.store') }} " method="POST">
+        <form action=" {{ route('admin.projects.store') }} " method="POST" enctype="multipart/form-data">
             @csrf 
   
             <div class="input-group mb-3">
@@ -33,6 +33,19 @@
                     </div>
                 @enderror
             </div>
+
+            {{-- thumbnail --}}
+            <div class="input-group mb-3">
+                <label for="thumbnail">Thumbnail</label>
+                <input class="mx-3 form-control @error('thumb') is-invalid @enderror" type="file" id="thumbnail" name="thumbnail">
+                                
+                @error('thumbnail')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            {{-- // thumbnail --}}
 
             {{-- type select --}}
             <div class="input-group mb-3">
@@ -68,17 +81,6 @@
                 @endforeach
             </div>
             {{-- // technologies --}}
-
-            <div class="input-group mb-3">
-                <label for="thumbnail">Thumbnail</label>
-                <input class="mx-3 form-control @error('thumb') is-invalid @enderror" type="text" id="thumbnail" name="thumbnail" value="{{old('thumbnail')}}" required>
-                                
-                @error('thumbnail')
-                    <div class="invalid-feedback">
-                        {{ $message }}
-                    </div>
-                @enderror
-            </div>
 
             {{-- <div class="input-group mb-3">
                 <label for="languages">Languages</label>
