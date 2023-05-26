@@ -9,6 +9,7 @@ use App\Models\Type;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ProjectController extends Controller
 {
@@ -44,15 +45,23 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
+        $formData = $request->all();
+
         $this->validation($request);
         
-        $formData = $request->all();
         $formData['github_repo'] = $formData['github_repo'] . '-repo';
 
         $newProject = new Project();
-        $newProject->slug = Str::slug($formData['title'], '-');
 
+        if($request->hasFile('thumbnail')){
+
+            $path = Storage::put('project_img', $request->thumbnail);
+
+            $formData['thumbnail'] = $path;
+        };
+        
         $newProject->fill($formData);
+        $newProject->slug = Str::slug($formData['title'], '-');
 
         $newProject->save(); 
 
@@ -98,9 +107,21 @@ class ProjectController extends Controller
      */
     public function update(Request $request, Project $project)
     {
+        $formData = $request->all();
+
         $this->validation($request);
 
-        $formData = $request->all();
+        if($request->hasFile('thumbnail')) {
+
+            if($project->thumbnail) {
+                Storage::delete($project->thumbnail);
+            }
+
+            $path = Storage::put('project_img', $request->thumbnail);
+
+            $formData['thumbnail'] = $path;
+
+        }
 
         $project->update($formData);
 
@@ -121,6 +142,10 @@ class ProjectController extends Controller
      */
     public function destroy(Project $project)
     {
+        if($project->thumbnail) {
+            Storage::delete($project->thumbnail);
+        }
+
         $project->delete();
 
         return redirect()->route('admin.projects.index');
@@ -135,7 +160,7 @@ class ProjectController extends Controller
             'description' => 'required|max:255',
             'type_id' => 'nullable|exists:types,id',
             'technologies' => 'exists:technologies,id',
-            'thumbnail' => 'required',
+            'thumbnail' => 'nullable|image|max:4096',
             // 'languages' => 'required',
             'year' => 'nullable|min:4|max:4|gte:2015|lte:2023',
             'github_repo' => 'required',
@@ -147,7 +172,8 @@ class ProjectController extends Controller
             'description.max' => 'Description field cannot be longer than 255 characters.',
             'technologies.exists' => 'Please select a technology chosen among the existing ones',
             'type_id.exists' => 'Please select a type chosen among the existing ones',
-            'thumb.required' => "Thumbnail path is mandatory.",
+            'thumb.required' => "Thumbnail must be an image file.",
+            'thumb.max' => "Image size exceeding 4MB, please try again.",
             // 'languages.required' => "Languages field is mandatory.",
             'year.min' => "Year must be 4 digits long",
             'year.max' => "Year must be 4 digits long",

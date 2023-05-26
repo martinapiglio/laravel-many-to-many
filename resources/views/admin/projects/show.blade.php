@@ -32,7 +32,8 @@
     </div>
     {{-- // technologies --}}
 
-    <img class="img-thumbnail mb-3" src="{{$project->thumbnail}}" alt="">
+    <img class="img-thumbnail mb-3" src="{{ asset('storage/' . $project->thumbnail) }}" alt="">
+
     <div class="mb-3"><strong>Languages</strong>: {{$project->languages}}</div>
     <div class="mb-3"><strong>Github repository name</strong>: {{$project->github_repo}}</div>
     <div class="mb-3"><strong>Year</strong>: {{$project->year}}</div>
