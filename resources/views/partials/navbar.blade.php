@@ -48,7 +48,21 @@ function routeName($string){
         <li class="nav-item">
             <a href="{{ route('admin.projects.create') }}" class=" {{routeName('admin.projects.create') ? '_active' : ''}}">
                 <i class="fa-solid fa-plus me-2"></i>
-                Add new project
+                Add a new project
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ route('admin.types.index') }}" class=" {{routeName('admin.types.index') ? '_active' : ''}}">
+                <i class="fa-solid fa-keyboard me-2"></i>
+                Types
+            </a>
+        </li>
+
+        <li class="nav-item">
+            <a href="{{ route('admin.types.create') }}" class=" {{routeName('admin.types.create') ? '_active' : ''}}">
+                <i class="fa-solid fa-plus me-2"></i>
+                Add a new type
             </a>
         </li>
 

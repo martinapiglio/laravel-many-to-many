@@ -1,31 +1,31 @@
-
 @extends('layouts/admin')
 
 @section('content')
 
     <div class="container p-5">
-        
+
         <h3 class="display-5 fw-bold mb-5">
-            Technology: <span style="color: {{$technology->color}}">{{$technology->name}}</span> 
+            All '{{$type->title}}' projects
         </h3>
 
-        @if(count($technology->projects) > 0)
+        
+        @if(count($type->projects) > 0)
 
         <table id="technologies-projects-table" class="table table-striped">
 
             <thead class="text-white bg-secondary">
                 <th>Title</th>
-                <th>Type</th>
+                <th>Technology</th>
                 <th>Year</th>
                 <th>Repository name</th>
                 <th>Details</th>
             </thead>
 
             <tbody>
-                @foreach($technology->projects as $project)
+                @foreach($type->projects as $project)
                     <tr>
                         <td>{{$project->title}}</td>
-                        <td>{{$project->type?->title}}</td>
+                        <td>{{$project->technology}}</td>
                         <td>{{$project->year}}</td>
                         <td>{{$project->github_repo}}</td>
                         <td>
@@ -44,12 +44,12 @@
         @endif
 
         <button class="btn btn-dark">
-            <a href="{{route('admin.technologies.edit', $technology->slug)}}">Change</a>
+            <a href="{{route('admin.types.edit', $type->slug)}}">Change</a>
         </button>
 
         {{-- modal --}}
         <button type="button" class="btn bg-danger text-white" data-bs-toggle="modal" data-bs-target="#deleteProject">
-            Delete Technology
+            Delete Type
         </button>
 
         <div class="modal fade text-dark" id="deleteProject" tabindex="-1" aria-hidden="true">
@@ -61,13 +61,13 @@
                     </div>
 
                     <div class="modal-body">
-                        Do you want to delete the selected technology? Please consider that this action is irreversible.
+                        Do you want to delete the selected type? Please consider that this action is irreversible.
                     </div>
 
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                     
-                        <form action="{{route('admin.technologies.destroy', $technology->slug)}}" method="POST">
+                        <form action="{{route('admin.types.destroy', $type->slug)}}" method="POST">
                             @csrf
                             @method('DELETE')
                     
@@ -82,9 +82,9 @@
         {{-- // modal --}}
 
         <div class="my-3">
-            <a id="back-link" href="{{route('admin.technologies.index')}}">Back to all technologies preview</a>
+            <a id="back-link" href="{{route('admin.types.index')}}">Back to all types preview</a>
         </div>
-
+    
     </div>
 
 @endsection
